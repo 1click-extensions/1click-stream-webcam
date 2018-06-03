@@ -50,6 +50,7 @@ streamer = {
         
     },
     streamStepFire : function(url){
+        streamer.lastStreamed = new Date().getTime();
         streamer.callPostAjax({
             action : 'upadte channel',
             private:streamer.private,
@@ -59,9 +60,10 @@ streamer = {
     },
     afterStreamStep : function(data){
         if(data.status && streamer.isStreaming){
+            let nextTime = 300 - (new Date().getTime() - streamer.lastStreamed);
             setTimeout(function(){
                 streamer.streamStep();
-            }, 200);
+            }, Math.max(nextTime , 0 ));
         }
     },
     callPostAjax : function(data,cb){
@@ -93,7 +95,7 @@ streamer = {
                 let link = 'http://127.0.0.1:2632/live-stream-live/' + data.public;
                 //console.log('showLink',showLink,link);
                 //var aTag = $('<a>').attr('href',link).appendTo(showLink)
-                $(showLink).html('<p><span class="label">' + chrome.i18n.getMessage("your_link") + '</span><a href="' +link+ '" target="_blank">' +link + '</a></p>');
+                $(showLink).html('<p><div class="label">' + chrome.i18n.getMessage("your_link") + '</div><a href="' +link+ '" target="_blank">' +link + '</a></p>');
                 //console.log(divStr);
                 //showLink.innerHtml = divStr;  
                 streamer.private = data.private;

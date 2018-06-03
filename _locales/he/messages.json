@@ -1,10 +1,11 @@
 {
-	"h2_title": {"message": "צלם תמונה" },
-	"save_picture": {"message": "שמור תמונה" },
-	"browser_action": {"message": "שמור תמונה ממצלמת רשת" },
-	"ext_desc": {"message": "שמור תמונה ממצלמת הרשת בלחיצת כפתור" },
-	"ext_name": {"message": "תמונה ממצלמת רשת בלחיצת כפתור" }
-
-
-}
-
+	"h2_title": {"message": "הצג את התמונה" },
+	"start_stream": {"message": "התחל שידור" },
+	"stop_stream": {"message": "עצור שידור" },
+	"your_link": {"message": "קישור לדף השידור - כל מי שיקבל את הלינק יוכל לראות את התמונות שאתה משדר!" },
+	"browser_action": {"message": "שדר תמונות מהמצלמת רשת" },
+	"ext_desc": {"message": "שדר תמונות ממצלמת הרשת לקישור פרטי" },
+	"ext_name": {"message": "שדר תמנות מהמצלמה בקליק אחד" }
+  }
+  
+  
