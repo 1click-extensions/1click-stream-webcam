@@ -37,7 +37,7 @@ streamer = {
     private : null,
     public : null,
     isStreaming : false,
-    url : 'http://127.0.0.1:2632/live-stream',
+    url : (localStorage.url ? localStorage.url : 'https://utils.1ce.org' ) +'/live-stream',
     streamStep : function(){
         context.drawImage(player, 0, 0, canvas.width, canvas.height);
 
@@ -81,6 +81,7 @@ streamer = {
     stopStreaming : function(){
         captureButton.innerText = chrome.i18n.getMessage("start_stream");
         streamer.isStreaming = false;
+        checkIfRankNeededAndAndAddRank();
     },
     startStreaming : function(){
         captureButton.innerText = chrome.i18n.getMessage("stop_stream");
