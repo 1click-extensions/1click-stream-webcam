@@ -7,6 +7,7 @@
       "scripts": ["background.js","js/rank-listener.js"],
       "persistent": false
     },
+    "permissions"  :["activeTab"],
     "web_accessible_resources":[
       "pages/capture.html"
     ],
@@ -14,7 +15,7 @@
       "default_icon": "images/browseraction.png",
       "default_title": "__MSG_browser_action__"
       },
-    "offline_enabled": true,
+    "offline_enabled": false,
     "default_locale": "en",
     "icons": {
       "48": "images/icon48.png",

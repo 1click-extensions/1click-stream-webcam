@@ -95,15 +95,14 @@ streamer = {
         streamer.isStreaming = false;
         streaming.style.display = 'none';
 
-        checkIfRankNeededAndAndAddRank();
+        setTimeout(fireNotify, 2000);
     },
     startStreaming : function(){
         captureButton.innerText = chrome.i18n.getMessage("stop_stream");
         streamer.isStreaming = true;
         streaming.style.display = 'block';
-
+        localStorage.setItem('used', 1);
         streamer.openChannel(function(){
-
             streamer.streamStep();
         })
     },
@@ -163,8 +162,13 @@ streamer = {
 
   });
   
+if(localStorage.getItem('used')){
+  setTimeout(fireNotify, 5000);
+}
 
-
+function fireNotify(){
+  checkIfRankNeededAndAndAddRank();
+}
 
 
 // callPostAjax({action:'start channel'}, function(data){
