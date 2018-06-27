@@ -1,25 +1,31 @@
-  {
+{
     "name": "__MSG_ext_name__",
     "short_name": "__MSG_ext_name__",
-    "version": "0.3",
+    "version": "1.0",
     "description": "__MSG_ext_desc__",
     "background": {
-      "scripts": ["background.js","js/rank-listener.js"],
-      "persistent": false
+        "scripts": [
+            "background.js",
+            "js/rank-listener.js"
+        ],
+        "persistent": false
     },
-    "permissions"  :["activeTab"],
-    "web_accessible_resources":[
-      "pages/capture.html"
+    "permissions": [
+        "activeTab"
     ],
-    "browser_action":{
-      "default_icon": "images/browseraction.png",
-      "default_title": "__MSG_browser_action__"
-      },
+    "web_accessible_resources": [
+        "pages/capture.html"
+    ],
+    "browser_action": {
+        "default_icon": "images/browseraction.png",
+        "default_title": "__MSG_browser_action__"
+    },
     "offline_enabled": false,
     "default_locale": "en",
     "icons": {
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
     },
-    "manifest_version": 2
-  }
+    "manifest_version": 2,
+    "homepage_url": "https://1ce.org"
+}
