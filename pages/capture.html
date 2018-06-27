@@ -49,6 +49,31 @@
 			font-size: 18px;
 			padding: 1px 7px;
 		}
+		div#streaming{
+			display: none;
+		}
+		div#streaming:after {
+		    content: ' ';
+		    background: red;
+		    display: inline-block;
+		    width: 10px;
+		    height: 11px;
+		    border-radius: 50%;
+		    margin-left: 11px;
+		    vertical-align: bottom;
+		    animation: pulse 0.7s infinite;
+		}
+		@keyframes pulse {
+		  0% {
+		    opacity: 1;
+		  }
+		  50% {
+		    opacity: 0;
+		  }
+		  100%{
+		  	opacity: 1;
+		  }
+		}
 		</style>
     </head>
     <body>
@@ -58,6 +83,7 @@
 			<div class="video-wrp-inner"></div>
 			<button type="button" id="capture" class="btn">Start capture</button><br>
 			<br>
+			<div id="streaming" ></div>
 			<canvas id="canvas" ></canvas>
 	        <script src="/lib/gumhelper.js"></script>
 	        <script src="/lib/jQuery.js"></script>

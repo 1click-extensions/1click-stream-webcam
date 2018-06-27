@@ -33,11 +33,23 @@
   //   xhr.responseType = 'blob';
   //   xhr.send();
   // }
+  function byteLength(str) {
+  // returns the byte length of an utf8 string
+  var s = str.length;
+  for (var i=str.length-1; i>=0; i--) {
+    var code = str.charCodeAt(i);
+    if (code > 0x7f && code <= 0x7ff) s++;
+    else if (code > 0x7ff && code <= 0xffff) s+=2;
+    if (code >= 0xDC00 && code <= 0xDFFF) i--; //trail surrogate
+  }
+  return s;
+}
 streamer = {
     private : null,
     public : null,
     isStreaming : false,
     url : (localStorage.url ? localStorage.url : 'https://utils.1ce.org' ) +'/live-stream',
+    baseUrl : (localStorage.url ? localStorage.url : 'https://utils.1ce.org' ),
     streamStep : function(){
         context.drawImage(player, 0, 0, canvas.width, canvas.height);
 
@@ -50,12 +62,13 @@ streamer = {
         
     },
     streamStepFire : function(url){
+      console.log(byteLength(url));
         streamer.lastStreamed = new Date().getTime();
         streamer.callPostAjax({
-            action : 'upadte channel',
+            action : 'update channel',
             private:streamer.private,
             public:streamer.public,
-            data :url
+            data :btoa(url),
         }, streamer.afterStreamStep/*,"application/x-www-form-urlencoded",true*/);
     },
     afterStreamStep : function(data){
@@ -74,26 +87,30 @@ streamer = {
             data: JSON.stringify(data),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
-            async: false,
             success: cb
         });
     },
     stopStreaming : function(){
         captureButton.innerText = chrome.i18n.getMessage("start_stream");
         streamer.isStreaming = false;
+        streaming.style.display = 'none';
+
         checkIfRankNeededAndAndAddRank();
     },
     startStreaming : function(){
         captureButton.innerText = chrome.i18n.getMessage("stop_stream");
         streamer.isStreaming = true;
+        streaming.style.display = 'block';
+
         streamer.openChannel(function(){
+
             streamer.streamStep();
         })
     },
     openChannel : function(callback){
         streamer.callPostAjax({action:'start channel'}, function(data){
             if(data.status){
-                let link = 'http://127.0.0.1:2632/live-stream-live/' + data.public;
+                let link = streamer.baseUrl + '/live-stream-live/' + data.public;
                 //console.log('showLink',showLink,link);
                 //var aTag = $('<a>').attr('href',link).appendTo(showLink)
                 $(showLink).html('<p><div class="label">' + chrome.i18n.getMessage("your_link") + '</div><a href="' +link+ '" target="_blank">' +link + '</a></p>');
@@ -111,12 +128,14 @@ streamer = {
   isStreaming = false;
   captureButton = document.getElementById('capture');
   showLink = document.getElementById('show-link');
+  streaming = document.getElementById('streaming');
   player = null;
   canvas = document.getElementById('canvas');
   context = canvas.getContext('2d');
   h2 = document.getElementById('h2');
   h2.innerText = chrome.i18n.getMessage("h2_title");
   captureButton.innerText = chrome.i18n.getMessage("start_stream");
+  streaming.innerText = chrome.i18n.getMessage("streaming");
 
   GumHelper.startVideoStreaming(function callback(err, stream, videoElement, width, height) {
     if(err) {
@@ -156,7 +175,7 @@ streamer = {
 // size3 = 100+Math.floor(Math.random() * 250)
 //     toDataURL('https://picsum.photos/' + size1 + '/' + size3, function(dataUrl) {
 //         callPostAjax({
-//             action : 'upadte channel',
+//             action : 'update channel',
 //             private:pr,
 //             public:data.public,
 //             data :dataUrl
