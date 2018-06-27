@@ -6,7 +6,7 @@
 	"streaming": {"message": "משדר" },
 	"browser_action": {"message": "שדר תמונות מהמצלמת רשת" },
 	"ext_desc": {"message": "שדר תמונות ממצלמת הרשת לקישור פרטי" },
-	"ext_name": {"message": "שדר תמנות מהמצלמה בקליק אחד" }
+	"ext_name": {"message": "שדר תמונות מהמצלמה בקליק אחד" }
   }
   
   
