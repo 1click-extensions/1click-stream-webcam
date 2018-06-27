@@ -4,8 +4,8 @@
   "stop_stream": {"message": "Stop stream" },
   "your_link": {"message": "Link to streaming page. Everyone how had this link can watch your pictures!" },
   "streaming": {"message": "Streaming" },
-  "browser_action": {"message": "Save picture from webcam" },
-  "ext_desc": {"message": "Get image file from your webcam" },
+  "browser_action": {"message": "Stream pictures from webcam" },
+  "ext_desc": {"message": "Stream your webacm throgh the web" },
   "ext_name": {"message": "1click Webcam to Picture" }
 }
 
