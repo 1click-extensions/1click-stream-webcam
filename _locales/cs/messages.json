@@ -6,6 +6,6 @@
   "streaming": {"message": "Streaming" },
   "browser_action": {"message": "Stream pictures from webcam" },
   "ext_desc": {"message": "Stream your webacm throgh the web" },
-  "ext_name": {"message": "1click Webcam to Picture" }
+  "ext_name": {"message": "1click Stream Webcam - Beta" }
 }
 
